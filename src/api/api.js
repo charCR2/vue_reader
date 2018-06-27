@@ -1,6 +1,6 @@
 import qs from 'querystring'
 import fetch from '@/axios/fetch'
-
+  //最下面是代理api地址，已注释
   //获取带书籍数量的父分类
 export function getCategories(){
   return fetch({
@@ -96,4 +96,105 @@ export function getRank(categoryid){
 
   })
 }
+
+
+// import qs from 'querystring'
+// import fetch from '@/axios/fetch'
+//
+// //获取带书籍数量的父分类
+// export function getCategories(){
+//   return fetch({
+//     url: '/categories',
+//   })
+// }
+//
+// //获取排名分类
+// export function getRankCategory(){
+//   return fetch({
+//     url: '/rank-category',
+//   })
+// }
+//
+// //获取带子分类的分类
+// export function  getSubCategory(){
+//   return fetch({
+//     url: '/sub-categories',
+//   })
+// }
+//
+// //获取分类详情
+// export function getCategoryInfo(category_type){
+//   let query = qs.stringify(category_type);
+//   return fetch({
+//     url: '/category-info?' + query,
+//   })
+// }
+//
+// //获取书籍详情
+// export function getBookInfo(id){
+//   return fetch({
+//     url: '/book-info/'+id,
+//   })
+// }
+//
+// //获取书籍相关推荐
+// export function  getRecommend(id){
+//   return fetch({
+//     url: '/recommend/'+id,
+//   })
+// }
+//
+// //获取作者名下的书籍
+// export function getAuthorBook(author){
+//   let author_query = qs.stringify(author);
+//   return fetch({
+//     url: '/author-books?' + author_query,
+//   })
+// }
+//
+// //获取书籍源
+// export function getBookSources(bookid){
+//   let book_source = qs.stringify(bookid);
+//   return fetch({
+//     url: '/book-sources?' + book_source,
+//   })
+// }
+//
+// //获取书籍章节
+// export function  getChapter(id){
+//   return fetch({
+//     url: '/book-chapters/'+id,
+//   })
+// }
+//
+// //获取章节详细内容
+// export function getBookChapter(link){
+//   return fetch({
+//     url: '/chapters/'+link,
+//   })
+// }
+//
+// //获取搜索结果
+// export function getSearchResult(word){
+//   let keyword = qs.stringify(word);
+//   return fetch({
+//     url:'/search?' + keyword,
+//   })
+// }
+//
+// //获取热搜词
+// export function getSearchHotwords(){
+//   return fetch({
+//     url: '/api/book/search-hotwords',
+//   })
+// }
+//
+// //获取排名详情
+// export function getRank(categoryid){
+//   return fetch({
+//     url: '/rank/'+categoryid,
+//
+//   })
+// }
+
 

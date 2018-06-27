@@ -1,8 +1,10 @@
 <template>
   <div>
+
     <keep-alive exclude="myBooks,category,rank">
     <router-view></router-view>
     </keep-alive>
+
     <m-foot></m-foot>
   </div>
 </template>
