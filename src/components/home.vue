@@ -1,10 +1,10 @@
 <template>
   <div>
 
-    <keep-alive exclude="myBooks,category,rank">
-    <router-view></router-view>
+    <keep-alive >
+    <router-view v-if="$route.params.keepAlive"></router-view>
     </keep-alive>
-
+      <router-view v-if="!$route.params.keepAlive"></router-view>
     <m-foot></m-foot>
   </div>
 </template>

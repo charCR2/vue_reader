@@ -60,12 +60,7 @@ import util from '../api/util'
 					this.lists=this.$store.state.SearchResult.books;
 				}
 			},
-      '$route' (to, from) {
-        if(to.name === 'search'){
-          this.getSearchHot()
 
-        }
-      }
 		},
 		methods:{
       keydownsearch(el){
@@ -81,7 +76,7 @@ import util from '../api/util'
           })
           return;
         }
-        getSearchResult({keyword:this.keyword}).then(res=>{
+        getSearchResult({query:this.keyword}).then(res=>{
           res.data.books.forEach(book=>{
             book.cover = util.staticPath+book.cover;
           })
@@ -109,6 +104,7 @@ import util from '../api/util'
 	              res.data.books.forEach(book=>{
 	                book.cover = util.staticPath+book.cover;
 	              })
+                this.showHotword=false
 	              this.$store.commit('SetSearchResult',res.data);
 	            })
 			}

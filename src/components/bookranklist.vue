@@ -21,17 +21,23 @@ import util from '../api/util'
 				title:''
 			}
 		},
-		created(){
-			Indicator.open()
-			getRank(this.$route.params.rankid).then(res=>{
-				res.data.ranking.books.forEach(list=>{
-					list.cover=util.staticPath+list.cover;
-				})
-				this.ranklist= res.data.ranking.books;
-				this.title=this.$store.state.RankList.title;
-				Indicator.close()
-			})
-		}
+
+		mounted(){
+      this.getRanklists()
+		},
+    methods:{
+		  getRanklists(){
+        Indicator.open()
+        getRank(this.$route.params.rankid).then(res=>{
+          res.data.ranking.books.forEach(list=>{
+            list.cover=util.staticPath+list.cover;
+          })
+          this.ranklist= res.data.ranking.books;
+          this.title=this.$store.state.RankList.title;
+          Indicator.close()
+        })
+      }
+    }
 	}
 </script>
 <style type="text/css">

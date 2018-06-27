@@ -20,7 +20,7 @@
 		<p>{{book.longIntro}}</p>
 	</div>
 	<div class="info-last-chapter">
-		<p>最后更新:<a @click="quickread()" class="last-update" href="javascript:">
+		<p>最后更新:<a @click="quickread()" class="last-update" href="javascript:" >
 			{{book.lastChapter}}
 		</a></p>
 	</div>
@@ -39,7 +39,6 @@ moment.locale('zh-cn')
 	export default {
     beforeRouteLeave(to,from,next){
       if(to.name === 'reader') {
-        console.log(111)
       }
     },
 		data(){
@@ -75,16 +74,26 @@ moment.locale('zh-cn')
 		},
 		created(){
 			this.getbookInfo();
-			console.log(util.staticPath);
 		},
 		watch:{
 			'$route.params':'getbookInfo',
 		},
 		methods:{
 			quickread(){
-				let localShelf = util.getLocalData('myfollowbook');
-				localShelf[this.book._id].lastChapter=this.book.chaptersCount-1
 
+				let localShelf = util.getLocalData('myfollowbook');
+				if (localShelf[this.book._id]) {
+          localShelf[this.book._id].lastChapter = this.book.chaptersCount - 1
+        }
+        else {
+          localShelf[this.book._id] = {
+            title: this.book.title,
+            cover: this.book.cover,
+            source: this.$store.state.SourceId,
+            isTemporary: true,
+            lastChapter: this.book.chaptersCount - 1
+          };
+        }
 				if(localShelf[this.book._id].source){
 					this.$store.commit('SetSourceId',localShelf[this.book._id].source)
 				}
@@ -105,10 +114,9 @@ moment.locale('zh-cn')
 					localShelf[this.book._id]={
 						title:this.book.title,
 						cover:this.book.cover,
-						source:this.$store.state.SourceId
+						source:this.$store.state.SourceId,
+            isTemporary: false,
 					};
-					console.log(this.book._id)
-          console.log(this.$store.state.SourceId)
 					util.setLocalData('myfollowbook',localShelf);
 					this.isfollowed = !this.isfollowed;
 				}
@@ -130,7 +138,6 @@ moment.locale('zh-cn')
 			getbookSource() {
         if (this.$route.name === "bookinfo"||this.$route.name === "reader") {
           getBookSources({view: 'summary', book: this.$route.params.bookid}).then(res => {
-            console.log()
             this.$store.commit('SetSourceId', res.data[0]._id)
           })
         }

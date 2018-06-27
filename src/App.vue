@@ -1,13 +1,24 @@
 <template>
   <div id="app">
       <router-view ></router-view>
+    <router-link to="/home"> <button class="btn" v-show="isbutton" @click="isbtn">点击进入</button></router-link>
   </div>
 </template>
 
 <script>
 
   export default {
+    data(){
+      return{
+        isbutton:true
+      }
+    },
     name: 'app',
+    methods:{
+      isbtn(){
+        this.isbutton=false;
+      }
+    }
   }
 </script>
 
@@ -29,5 +40,6 @@
     text-align: center;
     background: black;
     color: white;
+    font-size: 20px;
   }
 </style>

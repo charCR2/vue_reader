@@ -1,5 +1,6 @@
 <template>
   <div class="index-container">
+    <keep-alive>
     <div class="index-main-box">
       <m-head  :menubtn="true" :title="'阅读器'" :center="true"></m-head>
       <div class="index-scroll-view" ref="indexview">
@@ -8,8 +9,8 @@
         <indexNewbook :newslist="newslist"></indexNewbook>
         <!--<indexChannel></indexChannel>-->
       </div>
-
     </div>
+    </keep-alive>
   </div>
 </template>
 

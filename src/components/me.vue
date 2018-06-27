@@ -35,13 +35,6 @@ import _ from 'lodash'
 		created(){
 			this.getfollowbook()
 		},
-    watch:{
-      '$route' (to, from) {
-        if(to.name === 'me'){
-          this.getfollowbook()
-        }
-      }
-    },
 		methods:{
 			ontouchstart(id){
 					this.timer= setTimeout(()=>{

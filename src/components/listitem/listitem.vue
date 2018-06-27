@@ -4,7 +4,7 @@
 				<li class="category-book-item" v-for="book in Lists">
 					<router-link :to="{'name':'bookinfo',params:{bookid:book._id}}" class="fix">
 						<div class="category-book-cover">
-							<img v-lazy="book.cover" :title="book.title">
+							<img :src="book.cover" :title="book.title">
 						</div>
 						<div class="category-book-msg">
 							<h3 class="category-book-title">{{book.title}}</h3>
@@ -24,13 +24,13 @@
 
 			}
 		},
-		props:['Lists']
+		props:['Lists'],
 	}
 </script>
 <style type="text/css">
 		.category-book-view{
 		overflow-y:scroll;
-		height: 100%; 
+		height: 100%;
 	}
 	.category-book-item>a{
 		width: 100%;

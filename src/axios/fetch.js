@@ -10,18 +10,7 @@ const service = axios.create({
   method: 'get'
 })
 
-// request 请求发送之前 拦截器
-service.interceptors.request.use(config => {
-  const Authorization = sessionStorage.getItem('Authorization')
-  if (Authorization) {
-    config.headers['Authorization'] = Authorization // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
-  }
-  return config
-}, error => {
-  // Do something with request error
-  console.log(error) // for debug
-  Promise.reject(error)
-})
+
 
 // request 请求收到后 拦截器设置
 service.interceptors.response.use(

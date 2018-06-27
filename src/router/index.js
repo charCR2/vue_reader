@@ -42,59 +42,87 @@ export default new Router({
   mode:'history',
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component:  resolve => require(['@/components/home'], resolve),
+      meta:{
+        keepAlive:false
+      },
       children:[
         {
           path:'/',
           name:'me',
           component: resolve => require(['@/components/me'], resolve),
+          meta:{
+            keepAlive:false
+          }
         },
         {
           path: '/myBooks',
           name: 'myBooks',
           component: resolve => require(['@/components/myBooks'], resolve),
+          meta:{
+            keepAlive:true
+          }
+
         },
         {
           path:'/bookinfo/:bookid',
           name:'bookinfo',
           component: resolve => require(['@/components/pages/bookinfo'], resolve),
-
+          meta:{
+            keepAlive:false
+          }
         },
         {
           path:'/category',
           name:'category',
           component: resolve => require(['@/components/category'], resolve),
+          meta:{
+            keepAlive:true
+          }
         },
         {
           path:'/rank',
           name:'rank',
           component: resolve => require(['@/components/bookrank'], resolve),
+          meta:{
+            keepAlive:true
+          }
         },
         {
           path:'/ranklist/:rankid',
           name:'ranklist',
           component: resolve => require(['@/components/bookranklist'], resolve),
+          meta:{
+            keepAlive:false
+          }
         },
         {
           path:'/categorylist',
           name:'categorylist',
           component: resolve => require(['@/components/categorylist'], resolve),
+          meta:{
+            keepAlive:false
+          }
         },
         {
           path:'/search',
           name:'search',
           component: resolve => require(['@/components/search'], resolve),
-        }
+          meta:{
+            keepAlive:false
+          }
+        },
+        {
+          path:'/reader/:bookid',
+          name:'reader',
+          component:reader,
 
+        },
       ]
     },
-    {
-      path:'/reader/:bookid',
-      name:'reader',
-      component:reader,
-    },
+
 
   ]
 })

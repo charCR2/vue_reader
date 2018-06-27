@@ -18,21 +18,27 @@ export default{
 
 	beforeRouteLeave(to,from,next){
 		let localShelf = util.getLocalData('myfollowbook')?util.getLocalData('myfollowbook'):{};
-		if(!localShelf[this.$route.params.bookid]){
+		if(!localShelf[this.$route.params.bookid]||localShelf[this.$route.params.bookid]){
 			MessageBox.confirm('是否加入收藏','加入收藏').then(()=>{
 				localShelf[this.$route.params.bookid]={
 					cover:this.$store.state.BookInfo.cover,
 					title:this.$store.state.BookInfo.title,
 					lastChapter:this.currentChapter,
 					position:document.getElementById('reader-page-view').scrollTop,
-					source:this.$store.state.SourceId
+					source:this.$store.state.SourceId,
+          isTemporary: false,
 				}
-			util.setLocalData('myfollowbook',localShelf);
-			this.$store.commit('SetSourceId',false)
-			next()
+        util.setLocalData('myfollowbook',localShelf);
+        this.$store.commit('SetSourceId',false)
+        next()
 			}).catch(()=>{
 				this.$store.commit('SetSourceId',false)
-				next()})
+        next()
+				})
+      if(localShelf[this.$route.params.bookid].isTemporary){
+        delete localShelf[this.$route.params.bookid];
+      }
+      util.setLocalData('myfollowbook',localShelf);
 		}else{
 			localShelf[this.$route.params.bookid]={
 					cover:this.$store.state.BookInfo.cover,
@@ -69,13 +75,6 @@ export default{
  },
 	watch:{
 		'currentChapter':'getChapterContent',
-    '$route' (to, from) {
-      if(to.name === 'reader'){
-        this.getChapters();
-        this.getSources();
-        this.$store.commit()
-      }
-    }
 	},
 	methods:{
 		getChapters(){
