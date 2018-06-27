@@ -27,28 +27,18 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import bookinfo from "../components/pages/bookinfo"
 import myBooks from  '../components/myBooks'
-
 import reader from  "../components/readerPages/reader"
 import category from "../components/category"
 import rank from '../components/bookrank'
 import ranklist from '../components/bookranklist'
 import categorylist from "../components/categorylist"
 import me from "../components/me"
-import home from "../components/home"
 import search from "../components/search"
 Vue.use(Router)
 
 export default new Router({
   mode:'history',
   routes: [
-    {
-      path: '/home',
-      name: 'home',
-      component:  resolve => require(['@/components/home'], resolve),
-      meta:{
-        keepAlive:false
-      },
-      children:[
         {
           path:'/',
           name:'me',
@@ -117,12 +107,11 @@ export default new Router({
         {
           path:'/reader/:bookid',
           name:'reader',
-          component:reader,
-
-        },
-      ]
-    },
-
-
+          component: resolve => require(['@/components/readerPages/reader'], resolve),
+          meta:{
+            keepAlive:false,
+            isShowFoot:false
+          }
+        }
   ]
 })

@@ -25,7 +25,7 @@
 </template>
 
 <script type="text/javascript">
-  import {Toast} from 'mint-ui'
+  import {Toast,Indicator} from 'mint-ui'
 import listitem from './listitem/listitem'
 import {getSearchHotwords, getSearchResult} from '../api/api'
 import util from '../api/util'
@@ -69,11 +69,13 @@ import util from '../api/util'
         }
       },
       searchbook(){
+        Indicator.open()
         if(this.keyword == ''){
           Toast({
             message:'请输入关键字',
             duration:2000
           })
+          Indicator.close()
           return;
         }
         getSearchResult({query:this.keyword}).then(res=>{
@@ -82,6 +84,7 @@ import util from '../api/util'
           })
           this.$store.commit('SetSearchResult',res.data);
           this.showHotword=false
+          Indicator.close()
         })
       },
 		  getSearchHot(){
@@ -100,12 +103,14 @@ import util from '../api/util'
 				}
 			},
 			tags(word){
+        Indicator.open()
 	          getSearchResult({query:word}).then(res=>{
 	              res.data.books.forEach(book=>{
 	                book.cover = util.staticPath+book.cover;
 	              })
                 this.showHotword=false
 	              this.$store.commit('SetSearchResult',res.data);
+              Indicator.close()
 	            })
 			}
 		}

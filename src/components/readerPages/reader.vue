@@ -18,7 +18,7 @@ export default{
 
 	beforeRouteLeave(to,from,next){
 		let localShelf = util.getLocalData('myfollowbook')?util.getLocalData('myfollowbook'):{};
-		if(!localShelf[this.$route.params.bookid]||localShelf[this.$route.params.bookid]){
+		if(!localShelf[this.$route.params.bookid]||localShelf[this.$route.params.bookid].isTemporary){
 			MessageBox.confirm('是否加入收藏','加入收藏').then(()=>{
 				localShelf[this.$route.params.bookid]={
 					cover:this.$store.state.BookInfo.cover,
@@ -35,10 +35,12 @@ export default{
 				this.$store.commit('SetSourceId',false)
         next()
 				})
+      document.getElementById("foot").style.display="block";
       if(localShelf[this.$route.params.bookid].isTemporary){
         delete localShelf[this.$route.params.bookid];
       }
       util.setLocalData('myfollowbook',localShelf);
+
 		}else{
 			localShelf[this.$route.params.bookid]={
 					cover:this.$store.state.BookInfo.cover,
@@ -49,6 +51,7 @@ export default{
 				}
 			util.setLocalData('myfollowbook',localShelf);
 			this.$store.commit('SetSourceId',false)
+      document.getElementById("foot").style.display="block";
 			next()
 		}
 	},
@@ -69,9 +72,10 @@ export default{
 		'reader-menu':readermenu,
 		'reader-catalog':readercatalog
 	},
- mounted(){
+ created(){
    this.getChapters();
    this.getSources();
+   document.getElementById("foot").style.display="none";
  },
 	watch:{
 		'currentChapter':'getChapterContent',

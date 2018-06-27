@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-      <router-view ></router-view>
-    <router-link to="/home"> <button class="btn" v-show="isbutton" @click="isbtn">点击进入</button></router-link>
+    <keep-alive >
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <router-link to="/"> <button class="btn" v-show="isbutton" @click="isbtn">点击进入</button></router-link>
+    <m-foot id="foot" style="display: none"></m-foot>
   </div>
 </template>
 
 <script>
+  import footer from './components/footandhead/footer'
 
   export default {
+    components:{
+      'm-foot':footer,
+    },
     data(){
       return{
         isbutton:true
       }
     },
+
     name: 'app',
     methods:{
       isbtn(){

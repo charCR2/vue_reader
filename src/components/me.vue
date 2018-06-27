@@ -33,6 +33,7 @@ import _ from 'lodash'
 			'm-head':header
 		},
 		created(){
+      document.getElementById("foot").style.display="block";
 			this.getfollowbook()
 		},
 		methods:{

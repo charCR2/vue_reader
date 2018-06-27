@@ -264,12 +264,12 @@ export default{
 	}
   .fontbtn{
     width: 18%;
-    height: 30px;
+    height: 35px;
     text-align: center;
     background: rgba(0,0,0,0);
     border:1px solid #fff;
     font-size: 12px;
-    line-height: 30px;
+    line-height: 35px;
     color: #fff;
     float: left;
     margin: auto 3%;
