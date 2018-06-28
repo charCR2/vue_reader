@@ -10,10 +10,13 @@ import 'muse-ui/dist/muse-ui.css';
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import store from './store'
-Vue.use(MintUI)
+import Mui from 'vue-awesome-mui';
+
+Vue.use(Mui);  //监听手机返回键
+Vue.use(MintUI); //两个ui框架
 Vue.use(MuseUI);
-Vue.prototype.$axios = axios
-Vue.config.productionTip = false
+Vue.prototype.$axios = axios;
+Vue.config.productionTip = false;
 
 
 /* eslint-disable no-new */
