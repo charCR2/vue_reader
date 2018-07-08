@@ -87,7 +87,7 @@
     -webkit-padding-start: 0;
   }
   .index-main-box{
-    height: 91vh;
+    height: 92vh;
     overflow: hidden;
     padding-bottom: 25px;
   }

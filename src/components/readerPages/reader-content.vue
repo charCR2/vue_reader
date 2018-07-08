@@ -49,8 +49,8 @@ import _ from 'lodash'
 		overflow: hidden;
 	}
 	.reader-content{
-    color: #555;
-		line-height: 2;
+    color: #777;
+		line-height: 1.8;
 		margin:0 15px;
 		text-indent: 2em;
 		word-break: break-all;

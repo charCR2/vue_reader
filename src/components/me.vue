@@ -90,7 +90,7 @@ import _ from 'lodash'
   }
 	.myfollow-book-container{
 		position: relative;
-		height: 91vh;
+		height: 92vh;
 		overflow: hidden;
     padding-bottom: 25px;
 	}

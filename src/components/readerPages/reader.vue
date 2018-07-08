@@ -64,7 +64,9 @@ export default{
 			chapterContent:{},
 			sources:{},
 			Title:'',
-			Total:0
+			Total:0,
+      startX:[],
+      X:0,
 		}
 	},
 	components:{
@@ -116,17 +118,20 @@ export default{
 		},
 		checkStart(el){
 			this.ismove = false;
+      this.startX = el.changedTouches[0].pageX
 		},
-		checkmove(){
+		checkmove(el){
 			this.ismove = true;
+      let moveEndX = el.changedTouches[0].pageX;
+      this.X = moveEndX - this.startX
 		},
 		oprationAction(el){
+      let view = document.getElementById('reader-page-view');
+      let screenHeight =document.body.clientHeight;
+      let screenWidth =document.body.clientWidth;
+      let Wside = screenWidth/3;
+      let Hside = screenHeight/3;
 			if(!this.ismove){
-				let view = document.getElementById('reader-page-view');
-				let screenHeight =document.body.clientHeight;
-				let screenWidth =document.body.clientWidth;
-				let Wside = screenWidth/3;
-				let Hside = screenHeight/3;
 				let touchPointX = el.changedTouches[0].pageX;
 				let touchPointY = el.changedTouches[0].pageY;
 				if(touchPointX>0 &&touchPointX<Wside && this.ismenushow==false){
@@ -141,7 +146,21 @@ export default{
 					}
 					view.scrollTop += screenHeight;
 				}
-			}
+			}else{
+			  if (this.X>0){
+			    console.log(this.X>0);
+          el.preventDefault();
+          view.scrollTop -= screenHeight;
+
+        }else {
+          console.log(this.X>0);
+          el.preventDefault();
+          if(view.scrollHeight == view.scrollTop+screenHeight){
+            this.currentChapter++;
+          }
+          view.scrollTop += screenHeight;
+        }
+      }
 		},
 		goChapter(num){
 			this.currentChapter = num;

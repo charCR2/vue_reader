@@ -118,7 +118,7 @@ import util from '../api/util'
 </script>
 <style type="text/css">
 	.search-contaier{
-		height: 91vh;
+		height: 92vh;
 		overflow: hidden;
 		position: relative;
     padding-bottom: 25px;

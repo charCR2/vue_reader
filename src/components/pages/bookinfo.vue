@@ -49,7 +49,7 @@ import { Indicator } from 'mint-ui'
 		transform:translate3d(100vw,0px,0px);
 	}
 	.book-info-main{
-		height: 91vh;
+		height: 92vh;
 		width: 100%;
 		overflow:hidden;
     padding-bottom: 25px;

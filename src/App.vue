@@ -21,12 +21,11 @@
         isbutton:true
       }
     },
-
     name: 'app',
     methods:{
       isbtn(){
         this.isbutton=false;
-      }
+      },
     }
   }
 </script>
