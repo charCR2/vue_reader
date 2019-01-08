@@ -2,7 +2,7 @@ import qs from 'querystring'
 import fetch from '@/axios/fetch'
 
 //获取带书籍数量的父分类
-// const baseURL='http://api.zhuishushenqi.com/';
+// const baseURL='http://api.zhuishushenqi.com';
 //'/api/ '/api/
 //手机端没有跨域问题,所以打包后要在url前加上baseURL,把/api去掉
 export function getCategories(){

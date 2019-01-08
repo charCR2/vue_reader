@@ -33,7 +33,7 @@ import _ from 'lodash'
 		computed:{
 			Content(){
 				if(!_.isEmpty(this.bookContent)){
-				let text = this.bookContent && this.bookContent.cpContent ? 'cpContent' : 'body'
+				let text = this.bookContent && this.bookContent.cpContent ? 'cpContent' : 'body';
 				return this.bookContent[text].split('\n')
 				}
 			}
@@ -49,11 +49,13 @@ import _ from 'lodash'
 		overflow: hidden;
 	}
 	.reader-content{
-    color: #777;
+    color: #444;
 		line-height: 1.8;
 		margin:0 15px;
 		text-indent: 2em;
 		word-break: break-all;
+    font-weight: 500;
+
 	}
 	.reader-title{
 		font-size: 20px;

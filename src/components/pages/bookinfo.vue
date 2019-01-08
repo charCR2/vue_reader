@@ -20,19 +20,11 @@ import { Indicator } from 'mint-ui'
 				backstep:-1
 			}
 		},
-		beforeRouteEnter(to,from,next){
-			if(from.name == 'home'){
-				next(vm=>{
-					vm.backstep = 'home';
-				})
-			}else{
-				next()
-			}
-	    },
-	    beforeRouteUpdate(to,from,next){
-	    	document.getElementById('book-info-view').scrollTop=0;
-	    	next()
-	    },
+
+    created(){
+      this.$store.commit('setShowList',false);
+    },
+
 		components:{
 			'm-head':header,
 			'info-content':infocontent,
@@ -49,7 +41,7 @@ import { Indicator } from 'mint-ui'
 		transform:translate3d(100vw,0px,0px);
 	}
 	.book-info-main{
-		height: 92vh;
+		height: 91.6vh;
 		width: 100%;
 		overflow:hidden;
     padding-bottom: 25px;

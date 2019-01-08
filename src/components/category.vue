@@ -14,6 +14,9 @@ import femaleCategory from './category/female-category'
 import {getCategories} from '../api/api'
 
 	export default{
+    deactivated(){
+      this.$store.commit('setShowList',true);
+    },
 		name:'category',
 		data(){
 			return{
@@ -41,7 +44,7 @@ import {getCategories} from '../api/api'
   }
 	.category-container{
 		position: relative;
-		height: 92vh;
+		height: 91.6vh;
 		overflow:hidden;
     padding-bottom: 25px;
 	}

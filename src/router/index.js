@@ -85,7 +85,7 @@ export default new Router({
           name:'ranklist',
           component: resolve => require(['@/components/bookranklist'], resolve),
           meta:{
-            keepAlive:false
+            keepAlive:true
           }
         },
         {
@@ -93,7 +93,7 @@ export default new Router({
           name:'categorylist',
           component: resolve => require(['@/components/categorylist'], resolve),
           meta:{
-            keepAlive:false
+            keepAlive:true
           }
         },
         {

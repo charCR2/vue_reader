@@ -27,12 +27,12 @@ export default{
 					position:document.getElementById('reader-page-view').scrollTop,
 					source:this.$store.state.SourceId,
           isTemporary: false,
-				}
+				};
         util.setLocalData('myfollowbook',localShelf);
-        this.$store.commit('SetSourceId',false)
+        this.$store.commit('SetSourceId',false);
         next()
 			}).catch(()=>{
-				this.$store.commit('SetSourceId',false)
+				this.$store.commit('SetSourceId',false);
         next()
 				})
       document.getElementById("foot").style.display="block";
@@ -50,7 +50,7 @@ export default{
 					source:this.$store.state.SourceId
 				}
 			util.setLocalData('myfollowbook',localShelf);
-			this.$store.commit('SetSourceId',false)
+			this.$store.commit('SetSourceId',false);
       document.getElementById("foot").style.display="block";
 			next()
 		}
@@ -84,7 +84,7 @@ export default{
 	},
 	methods:{
 		getChapters(){
-			Indicator.open()
+			Indicator.open();
 		let localShelf=util.getLocalData('myfollowbook')?util.getLocalData('myfollowbook'):{},
 			sourceId=localShelf[this.$route.params.bookid]&&localShelf[this.$route.params.bookid].source?localShelf[this.$route.params.bookid].source : this.$store.state.SourceId;
 			getChapter(sourceId).then(res=>{
@@ -99,11 +99,19 @@ export default{
 				this.chapterContent = res.data.chapter;
 				this.Title = this.chapters[this.currentChapter].title;
 				this.Total = this.chapters.length - 1 ;
- 				document.getElementById('reader-page-view').scrollTop=0;
+        let view = document.getElementById('reader-page-view');
+        let screenHeight =document.body.clientHeight;
+        console.log(view.scrollHeight);
+ 				view.scrollTop=0;
+ 				let sum=0;
+ 				do{
+ 				  sum+=screenHeight;
+        }while(view.scrollHeight<sum);
+ 				view.style.height=sum+'px';
 				Indicator.close();
 			}).catch(err=>{
-				console.log(err)
-				Toast('获取章节失败')
+				console.log(err);
+				Toast('获取章节失败');
 				Indicator.close();
 			})
 		},
@@ -125,35 +133,37 @@ export default{
       let moveEndX = el.changedTouches[0].pageX;
       this.X = moveEndX - this.startX
 		},
+
+    //屏幕事件
 		oprationAction(el){
       let view = document.getElementById('reader-page-view');
       let screenHeight =document.body.clientHeight;
       let screenWidth =document.body.clientWidth;
       let Wside = screenWidth/3;
       let Hside = screenHeight/3;
+      // console.log(view.scrollHeight);
+      // console.log('页面的高度:'+view.clientHeight);
 			if(!this.ismove){
 				let touchPointX = el.changedTouches[0].pageX;
 				let touchPointY = el.changedTouches[0].pageY;
 				if(touchPointX>0 &&touchPointX<Wside && this.ismenushow==false){
-					this.ismenushow=false
+					this.ismenushow=false;
 					view.scrollTop -= screenHeight;
 				}else if(touchPointX>Wside && touchPointX<screenWidth-Wside &&touchPointY>Hside && touchPointY<screenHeight-Hside){
 					this.ismenushow=!this.ismenushow;
 				}else if(touchPointX<screenWidth && touchPointX>screenWidth-Wside && this.ismenushow==false){
 					this.ismenushow=false;
 					if(view.scrollHeight == view.scrollTop+screenHeight){
+            Indicator.open('正在获取章节');
 						this.currentChapter++;
 					}
 					view.scrollTop += screenHeight;
 				}
 			}else{
 			  if (this.X>0){
-			    console.log(this.X>0);
           el.preventDefault();
           view.scrollTop -= screenHeight;
-
         }else {
-          console.log(this.X>0);
           el.preventDefault();
           if(view.scrollHeight == view.scrollTop+screenHeight){
             this.currentChapter++;
@@ -172,6 +182,7 @@ export default{
 				Toast('当前章节为第一章');
 				return
 			}
+      Indicator.open('正在获取章节');
 			this.currentChapter -= 1;
 		},
 		chapterDown(){
@@ -180,6 +191,7 @@ export default{
 				Toast('后面已经没有了');
 				return
 			}
+      Indicator.open('正在获取章节');
 			this.currentChapter += 1;
 		}
 	}
@@ -198,4 +210,6 @@ export default{
   .reader-container a{
    color: white;
   }
+
+
 </style>

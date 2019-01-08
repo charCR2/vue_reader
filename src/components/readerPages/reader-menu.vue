@@ -67,7 +67,7 @@ export default{
       isnighticon:'wb_sunny',
 			beforecolor:'',
 			isFontMenuShow:false,
-			colors:['#f7eee5','#e9dfc7','#0f1410','#cdefce','#283548','#a4a4a4'],
+			colors:['#f7eee5','#FFF2E2','#0f1410','#cdefce','#283548','#a4a4a4'],
 			isactive:[true,false,false,false,false,false],
       isactivefont:[true,false,false,false],
       font:[
@@ -75,17 +75,18 @@ export default{
 		    name:'系统字体',
         fontvalue:''
       },
+
       {
-        name:'仿宋字体',
-        fontvalue:'fangsong'
-      },
-      {
-        name:'毛笔字体',
+        name:'静蕾字体',
         fontvalue:'ygy',
       },
+        {
+          name:'仿宋字体',
+          fontvalue:'fangsong'
+        },
       {
         name:'楷书字体',
-        fontvalue:'kaishu',
+        fontvalue:'kaiti',
       }
       ]
 		}

@@ -4,16 +4,23 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 let state ={
-	SourceId:'',
-	isShowCatlog:false,
-	isShowSource:false,
-  isShowFoot:false,
-	BookInfo:{},
-	RankList:{},
-	CategoryList:{},
-	SearchResult:{}
+	SourceId: '',
+	isShowCatlog: false,
+	isShowSource: false,
+  isShowList: false,
+  listScroll: 0,
+	BookInfo: {},
+	RankList: {},
+	CategoryList: {},
+	SearchResult: {}
 }
 let mutations ={
+    setShowList(state,list){
+    state.isShowList=list
+    },
+    SetListScroll(state,list){
+      state.listScroll=list;
+    },
 		SetCategoryList(state,list){
 			state.CategoryList=list;
 		},

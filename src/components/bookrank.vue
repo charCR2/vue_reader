@@ -34,6 +34,11 @@ import util from '../api/util'
 import {Indicator} from 'mint-ui'
 	export default{
 		name:'bookrank',
+
+    deactivated(){
+		  this.$store.commit('setShowList',true);
+    },
+
 		data(){
 			return{
 				ranklist:{},
@@ -77,7 +82,7 @@ import {Indicator} from 'mint-ui'
     color: #555;
   }
 	.book-rank-container{
-		height: 92vh;
+		height: 91.6vh;
 		overflow: hidden;
     padding-bottom: 25px;
 	}

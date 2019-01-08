@@ -38,6 +38,7 @@
     },
     created(){
       getRankCategory().then(res=>{
+        console.log(res)
         let maleid = res.data.male[this.randomnum(res.data.male)]._id;
         let femaleid = res.data.female[this.randomnum(res.data.female)]._id;
         let newsid = res.data.epub[this.randomnum(res.data.epub)]._id;
@@ -87,7 +88,7 @@
     -webkit-padding-start: 0;
   }
   .index-main-box{
-    height: 92vh;
+    height: 91.6vh;
     overflow: hidden;
     padding-bottom: 25px;
   }
